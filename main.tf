@@ -8,12 +8,12 @@ resource "google_cloud_run_v2_service" "default" {
       image = var.image_url
 
       ports {
-        container_port = var.server_port
+        container_port = 3000
       }
 
       resources {
         limits = {
-          memory = "512Mi"
+          memory = "1536Mi"
         }
       }
 
