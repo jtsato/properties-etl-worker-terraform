@@ -23,6 +23,7 @@ resource "google_cloud_run_service" "default" {
         resources {
           limits = {
             memory = "1024Mi"
+            cpu_idle = "false"
           }
         }
 
@@ -93,7 +94,6 @@ resource "google_cloud_run_service" "default" {
       annotations = {
         "autoscaling.knative.dev/maxScale" = "3"
         "autoscaling.knative.dev/minScale" = "1"
-        "run.googleapis.com/cpu-throttling": "true"
       }
     }
   }
