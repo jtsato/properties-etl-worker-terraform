@@ -16,9 +16,16 @@ resource "google_cloud_run_service" "default" {
       containers {
         image = var.image_url
 
+        resources {
+          limits = {
+            memory = "1Gi"
+          }
+        }
+
         ports {
           container_port = 8000
         }
+
         env {
           name  = "TZ"
           value = var.tz
