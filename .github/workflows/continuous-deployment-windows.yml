@@ -52,7 +52,7 @@ jobs:
           Write-Output "TF_VAR_MONGODB_DATABASE=${secrets:MONGODB_DATABASE}" >> $env:GITHUB_ENV
           Write-Output "TF_VAR_MONGODB_USER=${secrets:MONGODB_USER}" >> $env:GITHUB_ENV
           Write-Output "TF_VAR_MONGODB_PASSWORD=${secrets:MONGODB_PASSWORD}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_PROPERTY_COLLECTION_NAME=${secrets:PROPERTY_COLLECTION_NAME}" >> $env:GITHUB_ENV
+          Write-Output "TF_VAR_PROPERTY_COLLECTION_NAME=${env:PROPERTY_COLLECTION_NAME}" >> $env:GITHUB_ENV
 
       - name: Terraform Version
         run: terraform -version

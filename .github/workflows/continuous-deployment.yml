@@ -57,7 +57,7 @@ jobs:
           echo "TF_VAR_MONGODB_DATABASE=${{ secrets.MONGODB_DATABASE }}" >> $GITHUB_ENV
           echo "TF_VAR_MONGODB_USER=${{ secrets.MONGODB_USER }}" >> $GITHUB_ENV
           echo "TF_VAR_MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }}" >> $GITHUB_ENV
-          echo "TF_VAR_PROPERTY_COLLECTION_NAME=${{ secrets.PROPERTY_COLLECTION_NAME }}" >> $GITHUB_ENV
+          echo "TF_VAR_PROPERTY_COLLECTION_NAME=${{ vars.PROPERTY_COLLECTION_NAME }}" >> $GITHUB_ENV
 
       - name: Terraform Version
         run: terraform -version
