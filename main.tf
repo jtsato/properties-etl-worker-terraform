@@ -8,13 +8,12 @@ resource "google_cloud_run_v2_service" "default" {
       image = var.image_url
 
       ports {
-        container_port = 3000
+        container_port = var.server_port
       }
 
       resources {
         limits = {
-          memory = "1024Mi"
-          cpu    = 1
+          memory = "512Mi"
         }
       }
 
@@ -45,6 +44,14 @@ resource "google_cloud_run_v2_service" "default" {
       env {
         name  = "T1_XPATH_TIMEOUT_IN_SECONDS"
         value = var.t1_xpath_timeout_in_seconds
+      }
+      env {
+        name  = "SERVER_HOST"
+        value = var.server_host
+      }
+      env {
+        name  = "SERVER_PORT"
+        value = var.server_port
       }
       env {
         name  = "CLOUDAMQP_URL"
@@ -82,8 +89,8 @@ resource "google_cloud_run_v2_service" "default" {
     }
 
     scaling {
-      min_instance_count = 1
-      max_instance_count = 3
+      min_instance_count = 0
+      max_instance_count = 1
     }
 
     service_account = var.service_name

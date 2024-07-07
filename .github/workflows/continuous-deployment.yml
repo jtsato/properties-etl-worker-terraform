@@ -54,6 +54,8 @@ jobs:
           echo "TF_VAR_T1_IMGS_PATTERN_PREFIX_URL=${{ vars.T1_IMGS_PATTERN_PREFIX_URL }}" >> $GITHUB_ENV
           echo "TF_VAR_T1_LOAD_TIMEOUT_IN_SECONDS=${{ vars.T1_LOAD_TIMEOUT_IN_SECONDS }}" >> $GITHUB_ENV
           echo "TF_VAR_T1_XPATH_TIMEOUT_IN_SECONDS=${{ vars.T1_XPATH_TIMEOUT_IN_SECONDS }}" >> $GITHUB_ENV
+          echo "TF_VAR_SERVER_HOST=${{ secrets.SERVER_HOST }}" >> $GITHUB_ENV
+          echo "TF_VAR_SERVER_PORT=${{ secrets.SERVER_PORT }}" >> $GITHUB_ENV
           echo "TF_VAR_CLOUDAMQP_URL=${{ secrets.CLOUDAMQP_URL }}" >> $GITHUB_ENV
           echo "TF_VAR_OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
           echo "TF_VAR_PERPLEXITY_API_KEY=${{ secrets.PERPLEXITY_API_KEY }}" >> $
@@ -93,6 +95,8 @@ jobs:
           echo "t1_imgs_pattern_prefix_url=\"$TF_VAR_T1_IMGS_PATTERN_PREFIX_URL\"" >> secrets.tfvars
           echo "t1_load_timeout_in_seconds=\"$TF_VAR_T1_LOAD_TIMEOUT_IN_SECONDS\"" >> secrets.tfvars
           echo "t1_xpath_timeout_in_seconds=\"$TF_VAR_T1_XPATH_TIMEOUT_IN_SECONDS\"" >> secrets.tfvars
+          echo "server_host=\"$TF_VAR_SERVER_HOST\"" >> secrets.tfvars
+          echo "server_port=\"$TF_VAR_SERVER_PORT\"" >> secrets.tfvars
           echo "cloudamqp_url=\"$TF_VAR_CLOUDAMQP_URL\"" >> secrets.tfvars
           echo "openai_api_key=\"$TF_VAR_OPENAI_API_KEY\"" >> secrets.tfvars
           echo "perplexity_api_key=\"$TF_VAR_PERPLEXITY_API_KEY\"" >> secrets.tfvars
