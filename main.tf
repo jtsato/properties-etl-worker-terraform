@@ -91,9 +91,9 @@ resource "google_cloud_run_service" "default" {
     }
     metadata {
       annotations = {
-        "autoscaling.knative.dev/maxScale" = "3",
-        "autoscaling.knative.dev/minScale" = "1",
-        "run.googleapis.com/cpu-throttling": "true",
+        "autoscaling.knative.dev/maxScale" = "3"
+        "autoscaling.knative.dev/minScale" = "1"
+        "run.googleapis.com/cpu-throttling": "true"
       }
     }
   }
