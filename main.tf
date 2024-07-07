@@ -17,7 +17,7 @@ resource "google_cloud_run_service" "default" {
         image = var.image_url
 
         ports {
-          container_port = 80
+          container_port = 8000
         }
         env {
           name  = "TZ"
