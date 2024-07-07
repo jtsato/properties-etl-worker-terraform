@@ -16,14 +16,14 @@ resource "google_cloud_run_service" "default" {
       containers {
         image = var.image_url
 
-        resources {
-          limits = {
-            memory = "1Gi"
-          }
-        }
-
         ports {
           container_port = 8000
+        }
+
+        resources {
+          limits = {
+            memory = "1024Mi"
+          }
         }
 
         env {
@@ -91,8 +91,7 @@ resource "google_cloud_run_service" "default" {
     }
     metadata {
       annotations = {
-        "autoscaling.knative.dev/maxScale" = "1",
-        "autoscaling.knative.dev/minScale" = "1",
+        "autoscaling.knative.dev/maxScale" = "3",
       }
     }
   }
