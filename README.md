@@ -2,7 +2,7 @@
 Properties ETL Worker Terraform IaC project.
 
 ## Production Version:
-* Properties ETL Worker: <!-- etl-prd-start -->v1.0.0-2407065<!-- etl-prd-end -->
+* Properties ETL Worker: <!-- etl-prd-start -->v1.0.0-2407066<!-- etl-prd-end -->
 
 ## Technology stack
 
