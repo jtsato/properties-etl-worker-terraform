@@ -100,7 +100,7 @@ resource "google_cloud_run_v2_service" "default" {
     type    = "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
     percent = 100
   }
-  
+
 }
 
 data "google_project" "project" {
