@@ -145,9 +145,9 @@ resource "google_cloud_run_v2_service_iam_policy" "noauth" {
 }
 
 resource "google_storage_bucket" "default" {
-  name          = google_cloud_run_v2_service.default.name
-  location      = google_cloud_run_v2_service.default.location
-  project       = var.project_id
+  name     = var.bucket_name
+  location = google_cloud_run_v2_service.default.location
+  project  = var.project_id
 }
 
 data "google_iam_policy" "creator" {
@@ -161,7 +161,7 @@ data "google_iam_policy" "creator" {
 }
 
 resource "google_storage_bucket_iam_policy" "policy" {
-  bucket = google_storage_bucket.default.name
+  bucket      = google_storage_bucket.default.name
   policy_data = data.google_iam_policy.creator.policy_data
 }
 

@@ -58,6 +58,11 @@ variable "t1_xpath_timeout_in_seconds" {
   type        = string
 }
 
+variable "bucket_name" {
+  description = "Bucket name."
+  type        = string
+}
+
 variable "cloudamqp_url" {
   description = "CloudAMQP URL."
   type        = string
