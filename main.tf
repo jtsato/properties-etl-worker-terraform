@@ -47,14 +47,6 @@ resource "google_cloud_run_v2_service" "default" {
         value = var.t1_xpath_timeout_in_seconds
       }
       env {
-        name  = "SERVER_HOST"
-        value = var.server_host
-      }
-      env {
-        name  = "SERVER_PORT"
-        value = var.server_port
-      }
-      env {
         name  = "CLOUDAMQP_URL"
         value = var.cloudamqp_url
       }

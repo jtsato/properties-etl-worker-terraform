@@ -45,8 +45,6 @@ jobs:
           Write-Output "TF_VAR_T1_IMGS_PATTERN_PREFIX_URL=${env:T1_IMGS_PATTERN_PREFIX_URL}" >> $env:GITHUB_ENV
           Write-Output "TF_VAR_T1_LOAD_TIMEOUT_IN_SECONDS=${env:T1_LOAD_TIMEOUT_IN_SECONDS}" >> $env:GITHUB_ENV
           Write-Output "TF_VAR_T1_XPATH_TIMEOUT_IN_SECONDS=${env:T1_XPATH_TIMEOUT_IN_SECONDS}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_SERVER_HOST=${secrets:SERVER_HOST}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_SERVER_PORT=${secrets:SERVER_PORT}" >> $env:GITHUB_ENV
           Write-Output "TF_VAR_CLOUDAMQP_URL=${secrets:CLOUDAMQP_URL}" >> $env:GITHUB_ENV
           Write-Output "TF_VAR_OPENAI_API_KEY=${secrets:OPENAI_API_KEY}" >> $env:GITHUB_ENV
           Write-Output "TF_VAR_PERPLEXITY_API_KEY=${secrets:PERPLEXITY_API_KEY}" >> $env:GITHUB_ENV
@@ -86,8 +84,6 @@ jobs:
           Write-Output "t1_imgs_pattern_prefix_url=\"$env:TF_VAR_T1_IMGS_PATTERN_PREFIX_URL\"" >> secrets.tfvars
           Write-Output "t1_load_timeout_in_seconds=\"$env:TF_VAR_T1_LOAD_TIMEOUT_IN_SECONDS\"" >> secrets.tfvars
           Write-Output "t1_xpath_timeout_in_seconds=\"$env:TF_VAR_T1_XPATH_TIMEOUT_IN_SECONDS\"" >> secrets.tfvars
-          Write-Output "server_host=\"$env:TF_VAR_SERVER_HOST\"" >> secrets.tfvars
-          Write-Output "server_port=\"$env:TF_VAR_SERVER_PORT\"" >> secrets.tfvars
           Write-Output "cloudamqp_url=\"$env:TF_VAR_CLOUDAMQP_URL\"" >> secrets.tfvars
           Write-Output "openai_api_key=\"$env:TF_VAR_OPENAI_API_KEY\"" >> secrets.tfvars
           Write-Output "perplexity_api_key=\"$env:TF_VAR_PERPLEXITY_API_KEY\"" >> secrets.tfvars

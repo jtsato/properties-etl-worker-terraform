@@ -58,16 +58,6 @@ variable "t1_xpath_timeout_in_seconds" {
   type        = string
 }
 
-variable "server_host" {
-  description = "Server Host Name."
-  type        = string
-}
-
-variable "server_port" {
-  description = "Server Host Port."
-  type        = string
-}
-
 variable "cloudamqp_url" {
   description = "CloudAMQP URL."
   type        = string
