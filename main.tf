@@ -161,7 +161,7 @@ data "google_iam_policy" "creator" {
 }
 
 resource "google_storage_bucket_iam_policy" "policy" {
-  bucket      = google_storage_bucket.default.name
+  bucket      = google_storage_bucket.default_bucket.name
   policy_data = data.google_iam_policy.creator.policy_data
 }
 
