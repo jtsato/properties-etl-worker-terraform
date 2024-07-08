@@ -144,7 +144,7 @@ resource "google_cloud_run_v2_service_iam_policy" "noauth" {
   policy_data = data.google_iam_policy.noauth.policy_data
 }
 
-resource "google_storage_bucket" "default" {
+resource "google_storage_bucket" "default_bucket" {
   name     = "${var.bucket_name}-bucket"
   location = google_cloud_run_v2_service.default.location
   project  = var.project_id
