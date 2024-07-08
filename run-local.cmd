@@ -2,7 +2,7 @@
 
 terraform validate
 
-terraform plan -destroy
+:: terraform plan -destroy
 
 terraform destroy -auto-approve -var-file=secrets.tfvars
 
