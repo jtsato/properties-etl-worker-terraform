@@ -1,4 +1,10 @@
 resource "google_cloud_run_v2_service" "default" {
+
+  depends_on = [
+    google_service_account_iam_member.iam_member,
+    google_service_account_iam_binding.act_as_iam,
+  ]
+
   name     = var.service_name
   location = var.cloud_region
   project  = var.project_id
@@ -14,7 +20,7 @@ resource "google_cloud_run_v2_service" "default" {
       resources {
         limits = {
           memory = "1024Mi"
-          cpu   = "2"
+          cpu    = "2"
         }
       }
 
@@ -83,7 +89,7 @@ resource "google_cloud_run_v2_service" "default" {
 
     scaling {
       min_instance_count = 1
-      max_instance_count = 1
+      max_instance_count = 2
     }
 
     service_account = var.service_name
