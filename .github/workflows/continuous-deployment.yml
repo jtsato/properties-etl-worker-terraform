@@ -54,7 +54,7 @@ jobs:
           echo "TF_VAR_T1_IMGS_PATTERN_PREFIX_URL=${{ vars.T1_IMGS_PATTERN_PREFIX_URL }}" >> $GITHUB_ENV
           echo "TF_VAR_T1_LOAD_TIMEOUT_IN_SECONDS=${{ vars.T1_LOAD_TIMEOUT_IN_SECONDS }}" >> $GITHUB_ENV
           echo "TF_VAR_T1_XPATH_TIMEOUT_IN_SECONDS=${{ vars.T1_XPATH_TIMEOUT_IN_SECONDS }}" >> $GITHUB_ENV
-          echo "TF_VAR_BUCKET_NAME=${{ vars.BUCKET_NAME }}"
+          echo "TF_VAR_BUCKET_NAME=${{ vars.BUCKET_NAME }}" >> $GITHUB_ENV
           echo "TF_VAR_CLOUDAMQP_URL=${{ secrets.CLOUDAMQP_URL }}" >> $GITHUB_ENV
           echo "TF_VAR_OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
           echo "TF_VAR_PERPLEXITY_API_KEY=${{ secrets.PERPLEXITY_API_KEY }}" >> $
