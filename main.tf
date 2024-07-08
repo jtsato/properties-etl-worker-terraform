@@ -53,6 +53,10 @@ resource "google_cloud_run_v2_service" "default" {
         value = var.t1_xpath_timeout_in_seconds
       }
       env {
+        name  = "BUCKET_NAME"
+        value = var.bucket_name
+      }
+      env {
         name  = "CLOUDAMQP_URL"
         value = var.cloudamqp_url
       }
@@ -145,25 +149,36 @@ resource "google_cloud_run_v2_service_iam_policy" "noauth" {
 }
 
 resource "google_storage_bucket" "storage_bucket" {
-  name     = "${var.bucket_name}-bucket"
-  location = google_cloud_run_v2_service.default.location
-  project  = var.project_id
+  name                        = "${var.bucket_name}-bucket"
+  location                    = google_cloud_run_v2_service.default.location
+  project                     = var.project_id
+  force_destroy               = true
+  uniform_bucket_level_access = true
 }
 
-data "google_iam_policy" "bucket_policy" {
+data "google_iam_policy" "storage_bucket_policy" {
   binding {
     role = "roles/storage.admin"
 
     members = [
+      "projectEditor:${var.project_id}",
+      "projectOwner:${var.project_id}",
       "serviceAccount:${google_service_account.default_service_account.email}",
-      "user:jorge.takeshi.sato@gmail.com",
     ]
   }
 }
 
-resource "google_storage_bucket_iam_policy" "bucket_policy" {
+resource "google_storage_bucket_iam_policy" "storage_bucket_iam_policy" {
   bucket      = google_storage_bucket.storage_bucket.name
-  policy_data = data.google_iam_policy.bucket_policy.policy_data
+  policy_data = data.google_iam_policy.storage_bucket_policy.policy_data
+}
+
+resource "google_project_iam_binding" "storage_admin" {
+  project = var.project_id
+  role    = "roles/storage.admin"
+  members = [
+    "serviceAccount:${google_service_account.default_service_account.email}"
+  ]
 }
 
 # gsutil mb -p duckhome-firebase -c STANDARD -l southamerica-east1 gs://duckhome-etl-terraform-state
