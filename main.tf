@@ -144,10 +144,25 @@ resource "google_cloud_run_v2_service_iam_policy" "noauth" {
   policy_data = data.google_iam_policy.noauth.policy_data
 }
 
-resource "google_storage_bucket_iam_member" "cloud_run_invoker" {
-  bucket = google_cloud_run_v2_service.default.name
-  role   = "roles/storage.objectCreator"
-  member = "serviceAccount:${google_cloud_run_v2_service.default.service_account_email}"
+resource "google_storage_bucket" "default" {
+  name          = google_cloud_run_v2_service.default.name
+  location      = google_cloud_run_v2_service.default.location
+  project       = var.project_id
+}
+
+data "google_iam_policy" "creator" {
+  binding {
+    role = "roles/storage.objectCreator"
+
+    members = [
+      "serviceAccount:${google_service_account.default_service_account.email}",
+    ]
+  }
+}
+
+resource "google_storage_bucket_iam_policy" "policy" {
+  bucket = google_storage_bucket.default.name
+  policy_data = data.google_iam_policy.creator.policy_data
 }
 
 # gsutil mb -p duckhome-firebase -c STANDARD -l southamerica-east1 gs://duckhome-etl-terraform-state
