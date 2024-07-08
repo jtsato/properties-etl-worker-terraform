@@ -173,14 +173,6 @@ resource "google_storage_bucket_iam_policy" "storage_bucket_iam_policy" {
   policy_data = data.google_iam_policy.storage_bucket_policy.policy_data
 }
 
-resource "google_project_iam_binding" "storage_admin" {
-  project = var.project_id
-  role    = "roles/storage.admin"
-  members = [
-    "serviceAccount:${google_service_account.default_service_account.email}"
-  ]
-}
-
 # gsutil mb -p duckhome-firebase -c STANDARD -l southamerica-east1 gs://duckhome-etl-terraform-state
 terraform {
   backend "gcs" {
