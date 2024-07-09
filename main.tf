@@ -19,10 +19,11 @@ resource "google_cloud_run_v2_service" "default" {
 
       resources {
         limits = {
-          memory = "768Mi"
+          memory = "1024Mi"
           cpu    = "1"
         }
         cpu_idle = true
+        startup_cpu_boost = true
       }
 
       env {
