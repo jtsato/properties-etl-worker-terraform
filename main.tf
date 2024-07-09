@@ -152,7 +152,7 @@ resource "google_storage_bucket" "storage_bucket" {
   name                        = "${var.bucket_name}"
   location                    = google_cloud_run_v2_service.default.location
   project                     = var.project_id
-  force_destroy               = true
+  force_destroy               = false
   uniform_bucket_level_access = true
 }
 
