@@ -156,6 +156,9 @@ resource "google_storage_bucket" "storage_bucket" {
 
   lifecycle {
     prevent_destroy = true
+    ignore_changes = [
+      prevent_destroy
+    ]
   }
 }
 
