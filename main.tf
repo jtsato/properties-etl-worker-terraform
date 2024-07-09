@@ -19,7 +19,7 @@ resource "google_cloud_run_v2_service" "default" {
 
       resources {
         limits = {
-          memory = "512Mi"
+          memory = "768Mi"
           cpu    = "1"
         }
         cpu_idle = true
