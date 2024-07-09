@@ -153,6 +153,7 @@ resource "google_storage_bucket" "storage_bucket" {
   location                    = google_cloud_run_v2_service.default.location
   project                     = var.project_id
   uniform_bucket_level_access = true
+  force_destroy               = false
 
   lifecycle {
     prevent_destroy = true
