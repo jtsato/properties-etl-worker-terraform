@@ -22,6 +22,7 @@ resource "google_cloud_run_v2_service" "default" {
           memory = "512Mi"
           cpu    = "1"
         }
+        cpu_idle = true
       }
 
       env {
