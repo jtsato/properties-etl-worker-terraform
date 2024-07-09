@@ -57,7 +57,7 @@ jobs:
           echo "TF_VAR_BUCKET_NAME=${{ vars.BUCKET_NAME }}" >> $GITHUB_ENV
           echo "TF_VAR_CLOUDAMQP_URL=${{ secrets.CLOUDAMQP_URL }}" >> $GITHUB_ENV
           echo "TF_VAR_OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
-          echo "TF_VAR_PERPLEXITY_API_KEY=${{ secrets.PERPLEXITY_API_KEY }}" >> $
+          echo "TF_VAR_PERPLEXITY_API_KEY=${{ secrets.PERPLEXITY_API_KEY }}" >> $GITHUB_ENV
           echo "TF_VAR_MONGODB_URL=${{ secrets.MONGODB_URL }}" >> $GITHUB_ENV
           echo "TF_VAR_MONGODB_DATABASE=${{ secrets.MONGODB_DATABASE }}" >> $GITHUB_ENV
           echo "TF_VAR_MONGODB_USER=${{ secrets.MONGODB_USER }}" >> $GITHUB_ENV
