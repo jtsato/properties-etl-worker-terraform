@@ -22,7 +22,7 @@ resource "google_cloud_run_v2_service" "default" {
           memory = "1024Mi"
           cpu    = "1"
         }
-        cpu_idle = true
+        cpu_idle = false
         startup_cpu_boost = false
       }
 
