@@ -50,6 +50,7 @@ jobs:
           Write-Output "TF_VAR_T1_LOAD_TIMEOUT_IN_SECONDS=${env:T1_LOAD_TIMEOUT_IN_SECONDS}" >> $env:GITHUB_ENV
           Write-Output "TF_VAR_T1_XPATH_TIMEOUT_IN_SECONDS=${env:T1_XPATH_TIMEOUT_IN_SECONDS}" >> $env:GITHUB_ENV
           Write-Output "TF_VAR_BUCKET_NAME=${env:BUCKET_NAME}" >> $env:GITHUB_ENV
+          Write-Output "TF_VAR_PROJECT_OWNER=${secrets:PROJECT_OWNER}" >> $env:GITHUB_ENV
           Write-Output "TF_VAR_CLOUDAMQP_URL=${secrets:CLOUDAMQP_URL}" >> $env:GITHUB_ENV
           Write-Output "TF_VAR_OPENAI_API_KEY=${secrets:OPENAI_API_KEY}" >> $env:GITHUB_ENV
           Write-Output "TF_VAR_PERPLEXITY_API_KEY=${secrets:PERPLEXITY_API_KEY}" >> $env:GITHUB_ENV
@@ -90,6 +91,7 @@ jobs:
           Write-Output "t1_load_timeout_in_seconds=\"$env:TF_VAR_T1_LOAD_TIMEOUT_IN_SECONDS\"" >> secrets.tfvars
           Write-Output "t1_xpath_timeout_in_seconds=\"$env:TF_VAR_T1_XPATH_TIMEOUT_IN_SECONDS\"" >> secrets.tfvars
           Write-Output "bucket_name=\"$env:TF_VAR_BUCKET_NAME\"" >> secrets.tfvars
+          Write-Output "project_owner=\"$env:TF_VAR_PROJECT_OWNER\"" >> secrets.tfvars
           Write-Output "cloudamqp_url=\"$env:TF_VAR_CLOUDAMQP_URL\"" >> secrets.tfvars
           Write-Output "openai_api_key=\"$env:TF_VAR_OPENAI_API_KEY\"" >> secrets.tfvars
           Write-Output "perplexity_api_key=\"$env:TF_VAR_PERPLEXITY_API_KEY\"" >> secrets.tfvars

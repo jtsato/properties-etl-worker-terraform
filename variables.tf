@@ -3,6 +3,11 @@ variable "project_id" {
   type        = string
 }
 
+variable "project_owner" {
+  description = "The email of the project owner."
+  type        = string
+}
+
 variable "cloud_region" {
   description = "The region to deploy to."
   type        = string

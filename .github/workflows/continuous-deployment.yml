@@ -55,6 +55,7 @@ jobs:
           echo "TF_VAR_T1_LOAD_TIMEOUT_IN_SECONDS=${{ vars.T1_LOAD_TIMEOUT_IN_SECONDS }}" >> $GITHUB_ENV
           echo "TF_VAR_T1_XPATH_TIMEOUT_IN_SECONDS=${{ vars.T1_XPATH_TIMEOUT_IN_SECONDS }}" >> $GITHUB_ENV
           echo "TF_VAR_BUCKET_NAME=${{ vars.BUCKET_NAME }}" >> $GITHUB_ENV
+          echo "TF_VAR_PROJECT_OWNER=${{ secrets.PROJECT_OWNER }}" >> $GITHUB_ENV
           echo "TF_VAR_CLOUDAMQP_URL=${{ secrets.CLOUDAMQP_URL }}" >> $GITHUB_ENV
           echo "TF_VAR_OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
           echo "TF_VAR_PERPLEXITY_API_KEY=${{ secrets.PERPLEXITY_API_KEY }}" >> $GITHUB_ENV
@@ -95,6 +96,7 @@ jobs:
           echo "t1_load_timeout_in_seconds=\"$TF_VAR_T1_LOAD_TIMEOUT_IN_SECONDS\"" >> secrets.tfvars
           echo "t1_xpath_timeout_in_seconds=\"$TF_VAR_T1_XPATH_TIMEOUT_IN_SECONDS\"" >> secrets.tfvars
           echo "bucket_name=\"$TF_VAR_BUCKET_NAME\"" >> secrets.tfvars
+          echo "project_owner=\"$TF_VAR_PROJECT_OWNER\"" >> secrets.tfvars
           echo "cloudamqp_url=\"$TF_VAR_CLOUDAMQP_URL\"" >> secrets.tfvars
           echo "openai_api_key=\"$TF_VAR_OPENAI_API_KEY\"" >> secrets.tfvars
           echo "perplexity_api_key=\"$TF_VAR_PERPLEXITY_API_KEY\"" >> secrets.tfvars
