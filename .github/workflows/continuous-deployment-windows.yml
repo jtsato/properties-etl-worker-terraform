@@ -100,6 +100,7 @@ jobs:
           Write-Output "property_collection_name=\"$env:TF_VAR_PROPERTY_COLLECTION_NAME\"" >> secrets.tfvars
 
       - name: Terraform Destroy
+        continue-on-error: true
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         run: |
