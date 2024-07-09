@@ -161,8 +161,6 @@ data "google_iam_policy" "storage_bucket_policy" {
     role = "roles/storage.admin"
 
     members = [
-      "projectEditor:${var.project_id}",
-      "projectOwner:${var.project_id}",
       "serviceAccount:${google_service_account.default_service_account.email}",
     ]
   }
