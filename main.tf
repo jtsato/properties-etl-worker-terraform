@@ -154,11 +154,6 @@ resource "google_storage_bucket" "storage_bucket" {
   project                     = var.project_id
   force_destroy               = true
   uniform_bucket_level_access = true
-
-  lifecycle {
-    prevent_destroy = false
-  }  
-
 }
 
 data "google_iam_policy" "storage_bucket_policy" {
