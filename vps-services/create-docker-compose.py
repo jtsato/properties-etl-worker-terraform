@@ -88,7 +88,10 @@ changes = {
             'MONGODB_PASSWORD': mongodb_password,
             'PROPERTY_COLLECTION_NAME': property_collection_name,
             'GOOGLE_APPLICATION_CREDENTIALS': 'google-credentials.json'
-        }
+        },
+        'volumes': [
+            './google-credentials.json:/google-credentials.json'
+        ]
     }
 }
 
