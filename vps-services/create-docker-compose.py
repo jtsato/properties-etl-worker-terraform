@@ -90,7 +90,7 @@ changes = {
             'GOOGLE_APPLICATION_CREDENTIALS': 'google-credentials.json'
         },
         'volumes': [
-            './google-credentials.json:/google-credentials.json'
+            './google-credentials.json:/aracne/app/google-credentials.json'
         ]
     }
 }
