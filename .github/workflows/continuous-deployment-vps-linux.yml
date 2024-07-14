@@ -178,6 +178,7 @@ jobs:
         run: |
           echo "${{ secrets.GOOGLE_CREDENTIALS }}" > google-credentials.json
           sshpass -p "${{ secrets.SSH_PASSWORD }}" scp -P ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no google-credentials.json ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }}/google-credentials.json
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "export GOOGLE_APPLICATION_CREDENTIALS=/home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }}/google-credentials.json"
 
       - name: Bring down docker-compose services
         working-directory: vps-services
