@@ -17,7 +17,6 @@ file_path = 'docker-compose.yml'
 
 service_name = os.getenv('SERVICE_NAME')
 image_url = os.getenv('IMAGE_URL')
-tz = os.getenv('TZ')
 log_level = os.getenv('LOG_LEVEL')
 ai_prompt = os.getenv('AI_PROMPT')
 t1_search_properties_url = os.getenv('T1_SEARCH_PROPERTIES_URL')
@@ -39,8 +38,6 @@ if not service_name:
     raise ValueError('SERVICE_NAME is required')
 if not image_url:
     raise ValueError('IMAGE_URL is required')
-if not tz:
-    raise ValueError('TZ is required')
 if not log_level:
     raise ValueError('LOG_LEVEL is required')
 if not ai_prompt:

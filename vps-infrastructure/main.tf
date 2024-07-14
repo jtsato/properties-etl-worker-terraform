@@ -8,10 +8,23 @@ resource "null_resource" "app_server" {
     port     = var.ssh_port
   }
 
+  provisioner "file" {
+    source      = "install-docker.sh"
+    destination = "/tmp/install-docker.sh"
+  }
+
   provisioner "remote-exec" {
-    inline = [ 
-      "chmod +x install-docker.sh",
-      "./install-docker.sh",
-     ]
+    inline = [
+      "echo ${var.ssh_password} | sudo -S chmod +x /tmp/install-docker.sh",
+      "echo ${var.ssh_password} | sudo -S /tmp/install-docker.sh",
+    ]
+  }
+}
+
+# gsutil mb -p duckhome-firebase -c STANDARD -l southamerica-east1 gs://duckhome-vps-terraform-state
+terraform {
+  backend "gcs" {
+    bucket = "duckhome-vps-terraform-state"
+    prefix = "terraform/state"
   }
 }
