@@ -6,6 +6,8 @@ on:
       - "**"
     paths: 
       - "vps-infrastructure/**"
+      - "README.md"
+      - ".github/workflows/continuous-deployment-vps-linux.yml"
   pull_request:
     branches:
       - "main"

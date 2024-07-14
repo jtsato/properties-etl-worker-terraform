@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - "**"
+    paths:
+      - "gcp-infrastructure/**"
+      - ".github/workflows/continuous-deployment-gcp-linux.yml"
   pull_request:
     branches:
       - "main"
