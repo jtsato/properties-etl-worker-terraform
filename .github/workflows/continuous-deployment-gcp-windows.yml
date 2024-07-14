@@ -35,30 +35,11 @@ jobs:
           IMAGE_URL: ${{ env.IMAGE_URL }}
           PRP_PRD: ${{ env.PRP_PRD }}
         run: |
-          Write-Output "ARTIFACT=${env:IMAGE_URL}:${env:PRP_PRD}"
           Write-Output "TF_LOG=debug" >> $env:GITHUB_ENV
           Write-Output "TF_VAR_PROJECT_ID=${env:PROJECT_ID}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_CLOUD_REGION=${env:CLOUD_REGION}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_ZONE=${env:ZONE}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_SERVICE_NAME=${env:SERVICE_NAME}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_IMAGE_URL=${env:IMAGE_URL}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_TZ=${env:TZ}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_LOG_LEVEL=${env:LOG_LEVEL}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_AI_PROMPT=${env:AI_PROMPT}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_T1_SEARCH_PROPERTIES_URL=${env:T1_SEARCH_PROPERTIES_URL}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_T1_IMGS_PATTERN_PREFIX_URL=${env:T1_IMGS_PATTERN_PREFIX_URL}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_T1_LOAD_TIMEOUT_IN_SECONDS=${env:T1_LOAD_TIMEOUT_IN_SECONDS}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_T1_XPATH_TIMEOUT_IN_SECONDS=${env:T1_XPATH_TIMEOUT_IN_SECONDS}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_BUCKET_NAME=${env:BUCKET_NAME}" >> $env:GITHUB_ENV
           Write-Output "TF_VAR_PROJECT_OWNER=${secrets:PROJECT_OWNER}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_CLOUDAMQP_URL=${secrets:CLOUDAMQP_URL}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_OPENAI_API_KEY=${secrets:OPENAI_API_KEY}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_PERPLEXITY_API_KEY=${secrets:PERPLEXITY_API_KEY}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_MONGODB_URL=${secrets:MONGODB_URL}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_MONGODB_DATABASE=${secrets:MONGODB_DATABASE}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_MONGODB_USER=${secrets:MONGODB_USER}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_MONGODB_PASSWORD=${secrets:MONGODB_PASSWORD}" >> $env:GITHUB_ENV
-          Write-Output "TF_VAR_PROPERTY_COLLECTION_NAME=${env:PROPERTY_COLLECTION_NAME}" >> $env:GITHUB_ENV
+          Write-Output "TF_VAR_CLOUD_REGION=${env:CLOUD_REGION}" >> $env:GITHUB_ENV
+          Write-Output "TF_VAR_BUCKET_NAME=${env:BUCKET_NAME}" >> $env:GITHUB_ENV
 
       - name: Terraform Version
         run: terraform -version
@@ -83,27 +64,9 @@ jobs:
         working-directory: gcp-infrastructure
         run: |
           Write-Output "project_id=\"$env:TF_VAR_PROJECT_ID\"" > secrets.tfvars
-          Write-Output "cloud_region=\"$env:TF_VAR_CLOUD_REGION\"" >> secrets.tfvars
-          Write-Output "zone=\"$env:TF_VAR_ZONE\"" >> secrets.tfvars
-          Write-Output "service_name=\"$env:TF_VAR_SERVICE_NAME\"" >> secrets.tfvars
-          Write-Output "image_url=\"$env:TF_VAR_IMAGE_URL\"" >> secrets.tfvars
-          Write-Output "tz=\"$env:TF_VAR_TZ\"" >> secrets.tfvars
-          Write-Output "log_level=\"$env:TF_VAR_LOG_LEVEL\"" >> secrets.tfvars
-          Write-Output "ai_prompt=\"$env:TF_VAR_AI_PROMPT\"" >> secrets.tfvars
-          Write-Output "t1_search_properties_url=\"$env:TF_VAR_T1_SEARCH_PROPERTIES_URL\"" >> secrets.tfvars
-          Write-Output "t1_imgs_pattern_prefix_url=\"$env:TF_VAR_T1_IMGS_PATTERN_PREFIX_URL\"" >> secrets.tfvars
-          Write-Output "t1_load_timeout_in_seconds=\"$env:TF_VAR_T1_LOAD_TIMEOUT_IN_SECONDS\"" >> secrets.tfvars
-          Write-Output "t1_xpath_timeout_in_seconds=\"$env:TF_VAR_T1_XPATH_TIMEOUT_IN_SECONDS\"" >> secrets.tfvars
-          Write-Output "bucket_name=\"$env:TF_VAR_BUCKET_NAME\"" >> secrets.tfvars
           Write-Output "project_owner=\"$env:TF_VAR_PROJECT_OWNER\"" >> secrets.tfvars
-          Write-Output "cloudamqp_url=\"$env:TF_VAR_CLOUDAMQP_URL\"" >> secrets.tfvars
-          Write-Output "openai_api_key=\"$env:TF_VAR_OPENAI_API_KEY\"" >> secrets.tfvars
-          Write-Output "perplexity_api_key=\"$env:TF_VAR_PERPLEXITY_API_KEY\"" >> secrets.tfvars
-          Write-Output "mongodb_url=\"$env:TF_VAR_MONGODB_URL\"" >> secrets.tfvars
-          Write-Output "mongodb_database=\"$env:TF_VAR_MONGODB_DATABASE\"" >> secrets.tfvars
-          Write-Output "mongodb_user=\"$env:TF_VAR_MONGODB_USER\"" >> secrets.tfvars
-          Write-Output "mongodb_password=\"$env:TF_VAR_MONGODB_PASSWORD\"" >> secrets.tfvars
-          Write-Output "property_collection_name=\"$env:TF_VAR_PROPERTY_COLLECTION_NAME\"" >> secrets.tfvars
+          Write-Output "cloud_region=\"$env:TF_VAR_CLOUD_REGION\"" >> secrets.tfvars
+          Write-Output "bucket_name=\"$env:TF_VAR_BUCKET_NAME\"" >> secrets.tfvars
 
       - name: Terraform Destroy
         continue-on-error: true
