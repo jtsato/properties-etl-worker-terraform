@@ -71,7 +71,6 @@ if not bucket_name:
 changes = {
     service_name : {
         'image': image_url,
-        'ports': ['3000:3000'],
         'environment': {
             'LOG_LEVEL': log_level,
             'AI_PROMPT': ai_prompt,
@@ -87,7 +86,8 @@ changes = {
             'MONGODB_DATABASE': mongodb_database,
             'MONGODB_USER': mongodb_user,
             'MONGODB_PASSWORD': mongodb_password,
-            'PROPERTY_COLLECTION_NAME': property_collection_name
+            'PROPERTY_COLLECTION_NAME': property_collection_name,
+            'GOOGLE_APPLICATION_CREDENTIALS': 'google-credentials.json'
         }
     }
 }
