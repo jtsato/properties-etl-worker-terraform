@@ -31,7 +31,6 @@ mongodb_database = os.getenv('MONGODB_DATABASE')
 mongodb_user = os.getenv('MONGODB_USER')
 mongodb_password = os.getenv('MONGODB_PASSWORD')
 property_collection_name = os.getenv('PROPERTY_COLLECTION_NAME')
-google_credentials = os.getenv('GOOGLE_CREDENTIALS')
 bucket_name = os.getenv('BUCKET_NAME')
 
 if not service_name:
@@ -66,8 +65,6 @@ if not mongodb_password:
     raise ValueError('MONGODB_PASSWORD is required')
 if not property_collection_name:
     raise ValueError('PROPERTY_COLLECTION_NAME is required')
-if not google_credentials:
-    raise ValueError('GOOGLE_CREDENTIALS is required')
 if not bucket_name:
     raise ValueError('BUCKET_NAME is required')
 
@@ -90,8 +87,7 @@ changes = {
             'MONGODB_DATABASE': mongodb_database,
             'MONGODB_USER': mongodb_user,
             'MONGODB_PASSWORD': mongodb_password,
-            'PROPERTY_COLLECTION_NAME': property_collection_name,
-            'GOOGLE_CREDENTIALS': google_credentials
+            'PROPERTY_COLLECTION_NAME': property_collection_name
         }
     }
 }
