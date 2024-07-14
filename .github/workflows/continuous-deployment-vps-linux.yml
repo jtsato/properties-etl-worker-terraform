@@ -178,7 +178,8 @@ jobs:
       - name: Copy Google Credentials to remote server
         working-directory: vps-services
         run: |
-          sshpass -p "${{ secrets.SSH_PASSWORD }}" scp -P ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no $GOOGLE_CREDENTIALS ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }}/google-credentials.json
+          echo "${{ secrets.GOOGLE_CREDENTIALS }}" > google-credentials.json
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" scp -P ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no google-credentials.json ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }}/google-credentials.json
 
       - name: Bring down docker-compose services
         working-directory: vps-services
