@@ -157,6 +157,8 @@ jobs:
       - name: Create Docker Compose File
         working-directory: vps-services
         id: create-docker-compose
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         run: |
           python create-docker-compose.py
 
