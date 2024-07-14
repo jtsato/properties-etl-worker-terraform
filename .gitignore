@@ -39,3 +39,4 @@ terraform.rc
 *.tfstate.backup
 secrets.tfvars
 tfplan.out
+docker-compose.yml

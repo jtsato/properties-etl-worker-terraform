@@ -1,0 +1,6 @@
+provider "null" {
+}
+
+provider "template" {
+}
+
