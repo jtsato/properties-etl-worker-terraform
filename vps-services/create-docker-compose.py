@@ -87,7 +87,8 @@ changes = {
             'MONGODB_USER': mongodb_user,
             'MONGODB_PASSWORD': mongodb_password,
             'PROPERTY_COLLECTION_NAME': property_collection_name,
-            'GOOGLE_APPLICATION_CREDENTIALS': 'google-credentials.json'
+            'GOOGLE_APPLICATION_CREDENTIALS': 'google-credentials.json',
+            'TZ': 'America/Sao_Paulo' 
         },
         'volumes': [
             './google-credentials.json:/aracne/app/google-credentials.json'
