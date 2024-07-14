@@ -1,4 +1,4 @@
-name: Continuous Deployment to GCP [Linux]
+name: Continuous Deployment to GCP [Infra-Linux]
 
 on:
   push:

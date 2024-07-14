@@ -1,4 +1,4 @@
-name: Continuous Deployment to Service VPS [Linux]
+name: Continuous Deployment to VPS [Service-Linux]
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: Continuous Deployment to GCP [Windows]
+name: Continuous Deployment to GCP [Infra-Windows]
 
 on:
   workflow_dispatch:
