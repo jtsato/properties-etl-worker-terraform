@@ -158,42 +158,42 @@ jobs:
 
       - name: Get the microservice version from README.md
         id: version
-      run: |
-        echo "PRP_PRD=$(cat README.md | grep -o -P '(?<=<!-- etl-prd-start -->).*(?=<!-- etl-prd-end -->)')" >> $GITHUB_ENV
+        run: |
+          echo "PRP_PRD=$(cat README.md | grep -o -P '(?<=<!-- etl-prd-start -->).*(?=<!-- etl-prd-end -->)')" >> $GITHUB_ENV
 
       - name: Build Image URL
         id: build_image_url
-      run: |
-        echo "IMAGE_URL=${{ vars.DOCKER_REGISTRY }}/jtsato/${{ vars.ARTIFACT_NAME }}:${{ env.PRP_PRD }}" >> $GITHUB_ENV
+        run: |
+          echo "IMAGE_URL=${{ vars.DOCKER_REGISTRY }}/jtsato/${{ vars.ARTIFACT_NAME }}:${{ env.PRP_PRD }}" >> $GITHUB_ENV
 
       - name: Set Environment Variables from GitHub Secrets
-      env:
-        IMAGE_URL: ${{ env.IMAGE_URL }}
+        env:
+          IMAGE_URL: ${{ env.IMAGE_URL }}
         run: |
-        echo "SERVICE_NAME=${{ vars.SERVICE_NAME }}" >> $GITHUB_ENV
-        echo "IMAGE_URL=${{ env.IMAGE_URL }}" >> $GITHUB_ENV
-        echo "LOG_LEVEL=${{ vars.LOG_LEVEL }}" >> $GITHUB_ENV
-        echo "AI_PROMPT=${{ vars.AI_PROMPT }}" >> $GITHUB_ENV
-        echo "T1_SEARCH_PROPERTIES_URL=${{ vars.T1_SEARCH_PROPERTIES_URL }}" >> $GITHUB_ENV
-        echo "T1_IMGS_PATTERN_PREFIX_URL=${{ vars.T1_IMGS_PATTERN_PREFIX_URL }}" >> $GITHUB_ENV
-        echo "T1_LOAD_TIMEOUT_IN_SECONDS=${{ vars.T1_LOAD_TIMEOUT_IN_SECONDS }}" >> $GITHUB_ENV
-        echo "T1_XPATH_TIMEOUT_IN_SECONDS=${{ vars.T1_XPATH_TIMEOUT_IN_SECONDS }}" >> $GITHUB_ENV
-        echo "BUCKET_NAME=${{ vars.BUCKET_NAME }}" >> $GITHUB_ENV
-        echo "CLOUDAMQP_URL=${{ secrets.CLOUDAMQP_URL }}" >> $GITHUB_ENV
-        echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
-        echo "PERPLEXITY_API_KEY=${{ secrets.PERPLEXITY_API_KEY }}" >> $GITHUB_ENV
-        echo "MONGODB_URL=${{ secrets.MONGODB_URL }}" >> $GITHUB_ENV
-        echo "MONGODB_DATABASE=${{ secrets.MONGODB_DATABASE }}" >> $GITHUB_ENV
-        echo "MONGODB_USER=${{ secrets.MONGODB_USER }}" >> $GITHUB_ENV
-        echo "MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }}" >> $GITHUB_ENV
-        echo "PROPERTY_COLLECTION_NAME=${{ vars.PROPERTY_COLLECTION_NAME }}" >> $GITHUB_ENV
-        echo "GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS }}" >> $GITHUB_ENV        
+          echo "SERVICE_NAME=${{ vars.SERVICE_NAME }}" >> $GITHUB_ENV
+          echo "IMAGE_URL=${{ env.IMAGE_URL }}" >> $GITHUB_ENV
+          echo "LOG_LEVEL=${{ vars.LOG_LEVEL }}" >> $GITHUB_ENV
+          echo "AI_PROMPT=${{ vars.AI_PROMPT }}" >> $GITHUB_ENV
+          echo "T1_SEARCH_PROPERTIES_URL=${{ vars.T1_SEARCH_PROPERTIES_URL }}" >> $GITHUB_ENV
+          echo "T1_IMGS_PATTERN_PREFIX_URL=${{ vars.T1_IMGS_PATTERN_PREFIX_URL }}" >> $GITHUB_ENV
+          echo "T1_LOAD_TIMEOUT_IN_SECONDS=${{ vars.T1_LOAD_TIMEOUT_IN_SECONDS }}" >> $GITHUB_ENV
+          echo "T1_XPATH_TIMEOUT_IN_SECONDS=${{ vars.T1_XPATH_TIMEOUT_IN_SECONDS }}" >> $GITHUB_ENV
+          echo "BUCKET_NAME=${{ vars.BUCKET_NAME }}" >> $GITHUB_ENV
+          echo "CLOUDAMQP_URL=${{ secrets.CLOUDAMQP_URL }}" >> $GITHUB_ENV
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
+          echo "PERPLEXITY_API_KEY=${{ secrets.PERPLEXITY_API_KEY }}" >> $GITHUB_ENV
+          echo "MONGODB_URL=${{ secrets.MONGODB_URL }}" >> $GITHUB_ENV
+          echo "MONGODB_DATABASE=${{ secrets.MONGODB_DATABASE }}" >> $GITHUB_ENV
+          echo "MONGODB_USER=${{ secrets.MONGODB_USER }}" >> $GITHUB_ENV
+          echo "MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }}" >> $GITHUB_ENV
+          echo "PROPERTY_COLLECTION_NAME=${{ vars.PROPERTY_COLLECTION_NAME }}" >> $GITHUB_ENV
+          echo "GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS }}" >> $GITHUB_ENV        
 
       - name: Create Docker Compose File
         working-directory: vps-services
-      id: create_docker_compose
-      run: |
-        python create_docker_compose.py
+        id: create_docker_compose
+        run: |
+          python create_docker_compose.py
 
       - name: Copy Docker Compose File to Remote Server
         run: |
@@ -206,14 +206,14 @@ jobs:
           ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }} && docker-compose up -d"
 
       - name: Check Docker Compose Status
-      run: |
-        ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }} && docker-compose ps"
+        run: |
+          ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }} && docker-compose ps"
 
       - name: Check Docker Compose Logs
-      run: |
-        ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }} && docker-compose logs"
+        run: |
+          ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }} && docker-compose logs"
 
       - name: Environment Teardown
         if: always()
-      run: |
-        echo "Finished!"
+        run: |
+          echo "Finished!"
