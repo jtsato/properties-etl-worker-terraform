@@ -189,7 +189,6 @@ jobs:
           echo "MONGODB_USER=${{ secrets.MONGODB_USER }}" >> $GITHUB_ENV
           echo "MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }}" >> $GITHUB_ENV
           echo "PROPERTY_COLLECTION_NAME=${{ vars.PROPERTY_COLLECTION_NAME }}" >> $GITHUB_ENV
-          echo "GOOGLE_CREDENTIALS=${{ secrets.GOOGLE_CREDENTIALS }}" >> $GITHUB_ENV        
 
       - name: Create Docker Compose File
         working-directory: vps-services
@@ -197,22 +196,14 @@ jobs:
         run: |
           python create_docker_compose.py
 
-      - name: Copy Docker Compose File to Remote Server
+      - name: Copy and Run Docker Compose File
+        working-directory: vps-services
         run: |
           ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }}"
           scp -P ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }}/docker-compose.yml
-
-      - name: Start Docker Compose
-        run: |
           ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }} && docker-compose down"
           ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }} && docker-compose up -d"
-
-      - name: Check Docker Compose Status
-        run: |
           ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }} && docker-compose ps"
-
-      - name: Check Docker Compose Logs
-        run: |
           ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /home/${{ secrets.SSH_USER }}/${{ vars.SERVICE_NAME }} && docker-compose logs"
 
       - name: Environment Teardown
