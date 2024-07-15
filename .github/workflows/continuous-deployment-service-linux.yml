@@ -63,6 +63,8 @@ jobs:
           echo "MONGODB_USER=${{ secrets.MONGODB_USER }}" >> $GITHUB_ENV
           echo "MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }}" >> $GITHUB_ENV
           echo "PROPERTY_COLLECTION_NAME=${{ vars.PROPERTY_COLLECTION_NAME }}" >> $GITHUB_ENV
+          echo "MEILISEARCH_HOST=${{ secrets.MEILISEARCH_HOST }}" >> $GITHUB_ENV
+          echo "MEILISEARCH_MASTER_KEY=${{ secrets.MEILISEARCH_MASTER_KEY }}" >> $GITHUB_ENV
 
       - name: Create Docker Compose File
         working-directory: vps-services

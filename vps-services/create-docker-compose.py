@@ -32,6 +32,8 @@ mongodb_user = os.getenv('MONGODB_USER')
 mongodb_password = os.getenv('MONGODB_PASSWORD')
 property_collection_name = os.getenv('PROPERTY_COLLECTION_NAME')
 bucket_name = os.getenv('BUCKET_NAME')
+meilisearch_host = os.getenv('MEILISEARCH_HOST')
+meilisearch_master_key = os.getenv('MEILISEARCH_MASTER_KEY')
 
 if not service_name:
     raise ValueError('SERVICE_NAME is required')
@@ -67,6 +69,10 @@ if not property_collection_name:
     raise ValueError('PROPERTY_COLLECTION_NAME is required')
 if not bucket_name:
     raise ValueError('BUCKET_NAME is required')
+if not meilisearch_host:
+    raise ValueError('MEILISEARCH_HOST is required')
+if not meilisearch_master_key:
+    raise ValueError('MEILISEARCH_MASTER_KEY is required')
 
 changes = {
     service_name : {
@@ -87,6 +93,8 @@ changes = {
             'MONGODB_USER': mongodb_user,
             'MONGODB_PASSWORD': mongodb_password,
             'PROPERTY_COLLECTION_NAME': property_collection_name,
+            'MEILISEARCH_HOST': meilisearch_host,
+            'MEILISEARCH_MASTER_KEY': meilisearch_master_key,
             'GOOGLE_APPLICATION_CREDENTIALS': 'google-credentials.json',
             'TZ': 'America/Sao_Paulo' 
         },
